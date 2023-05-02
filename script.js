@@ -1,15 +1,17 @@
 const members = {
   AJaguar: "+2348143261562",
-  Ahmad: "+2349098398073",
-  Busolami: "+2348024937947",
   Enutrof: "+2348180454128",
   LitmusZhang: "+2349021876874",
   OnyenweakuChibueze: "+2348029472061",
   curiousPaul: "+2348058740670",
   dro: "+2347056041426",
   ibukun: "+2348092816159",
-  idrisidris: "+2348135469842",
-  kruse: "+234",
+  MacChristo: "+2348161178104",
+  UkemeEdet: "+2349162330659",
+  Boss2021: "+2348154180579",
+  kayode01: "+2348074533474",
+  codesInML: "+2349028849304",
+  bestBoonTech: "+2348035272328",
 };
 const names = Object.keys(members);
 
@@ -31,9 +33,10 @@ const getPairs = () => {
   const takenSet = new Set();
 
   let max = names.length - 1;
+  let totalPairs = Math.floor(max / 2);
   const pairs = [];
 
-  while (pairs.length < 5) {
+  while (pairs.length < totalPairs) {
     let count = 2;
     let pair = [];
     while (count) {
