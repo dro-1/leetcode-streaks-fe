@@ -29,7 +29,7 @@ const getRandom = () => {
 const getPairs = () => {
   const takenSet = new Set();
 
-  let max = names.length - 1;
+  let max = names.length;
   let totalPairs = Math.floor(max / 2);
   const pairs = [];
 
