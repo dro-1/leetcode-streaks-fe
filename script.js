@@ -4,14 +4,11 @@ const members = {
   LitmusZhang: "+2349021876874",
   OnyenweakuChibueze: "+2348029472061",
   curiousPaul: "+2348058740670",
-  dro: "+2347056041426",
-  ibukun: "+2348092816159",
-  MacChristo: "+2348161178104",
-  UkemeEdet: "+2349162330659",
-  Boss2021: "+2348154180579",
-  kayode01: "+2348074533474",
-  codesInML: "+2349028849304",
-  bestBoonTech: "+2348035272328",
+  Ibukun: "+2348092816159",
+  techWiz: "+2349162330659",
+  Abdulrahman: "+2348154180579",
+  smiley: "+447307722292",
+  MakeThingsHappen: "+2348162831365",
 };
 const names = Object.keys(members);
 
