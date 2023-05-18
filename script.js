@@ -12,19 +12,42 @@ const members = {
 };
 const names = Object.keys(members);
 
+function RNG(seed) {
+  // LCG using GCC's constants
+  this.m = 0x80000000; // 2**31;
+  this.a = 1103515245;
+  this.c = 12345;
+
+  this.state = seed ? seed : Math.floor(Math.random() * (this.m - 1));
+}
+RNG.prototype.nextInt = function () {
+  this.state = (this.a * this.state + this.c) % this.m;
+  return this.state;
+};
+RNG.prototype.nextFloat = function () {
+  // returns in range [0,1]
+  return this.nextInt() / (this.m - 1);
+};
+RNG.prototype.nextRange = function (start, end) {
+  // returns in range [start, end): including start, excluding end
+  // can't modulu nextInt because of weak randomness in lower bits
+  var rangeSize = end - start;
+  var randomUnder1 = this.nextInt() / this.m;
+  return start + Math.floor(randomUnder1 * rangeSize);
+};
+RNG.prototype.choice = function (array) {
+  return array[this.nextRange(0, array.length)];
+};
+
 const getWeekNo = (date) => {
+  console.log(date);
   let year = new Date(date.getFullYear(), 0, 1);
   let days = Math.ceil((date - year) / (24 * 60 * 60 * 1000));
   let weekNo = Math.ceil(days / 7);
   return weekNo;
 };
 
-let seed = getWeekNo(new Date());
-
-const getRandom = () => {
-  let x = Math.sin(seed++) * 10000;
-  return x - Math.floor(x);
-};
+let seed = getWeekNo(new Date(2023, 4, 18));
 
 const getPairs = () => {
   const takenSet = new Set();
@@ -36,10 +59,11 @@ const getPairs = () => {
   while (pairs.length < totalPairs) {
     let count = 2;
     let pair = [];
+    rng = new RNG(seed);
     while (count) {
       let random;
       do {
-        random = Math.floor(getRandom() * max);
+        random = rng.nextRange(0, max);
       } while (takenSet.has(random));
 
       takenSet.add(random);
@@ -80,10 +104,8 @@ const getLinksList = (pairs) => {
 };
 
 const pairs = getPairs();
-console.log(pairs);
 
 const linksList = getLinksList(pairs);
-console.log(linksList);
 
 let listContainer = document.querySelector(".links");
 
